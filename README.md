@@ -30,12 +30,21 @@ node fxbot.js
 ```ws
 startbot.bat
 ```
-### fix in the ile .env
+### fix in the file .env
+### TOKEN DISCORD BOT
 ```ws
-TOKEN=
+TOKEN= your token discord
 ```
-CHANNEL_ID=your-channel-id
+###  YOUR CHANNEL ID
+```ws
+CHANNEL_ID=your channel id
+```
+### the api_url is a api to send discord from api website DONT FIX IT
+```ws
 API_URL=https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU/USD
-
+```
+### You can true or false as per your convenience.
+```ws
 UPDATE_ENABLED=true
 DELETE_OLD_MESSAGES=true
+```
