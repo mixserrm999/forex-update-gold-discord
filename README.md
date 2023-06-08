@@ -19,8 +19,6 @@
 npm install
 ```
 
-#
-
 ### Run fxbot.js
 
 ```ws
