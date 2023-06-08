@@ -30,3 +30,12 @@ node fxbot.js
 ```ws
 startbot.bat
 ```
+### fix in the ile .env
+```ws
+TOKEN=
+```
+CHANNEL_ID=your-channel-id
+API_URL=https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU/USD
+
+UPDATE_ENABLED=true
+DELETE_OLD_MESSAGES=true
