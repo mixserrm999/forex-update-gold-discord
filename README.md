@@ -27,7 +27,7 @@ npm install
 ```ws
 node fxbot.js 
 ```
-### or you can open file run.bat to start project
+### or you can open file startbot.bat to start project
 ```ws
 startbot.bat
 ```
@@ -47,5 +47,5 @@ API_URL=https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrumen
 ### You can true or false as per your convenience.
 ```ws
 UPDATE_ENABLED=true
-DELETE_OLD_MESSAGES=true
+DELETE_OLD_MESSAGES=false
 ```
