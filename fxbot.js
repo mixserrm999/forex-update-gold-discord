@@ -45,45 +45,45 @@ client.on('messageCreate', async (message) => {
 });
 
 async function startBot() {
-  while (isBotActive) {
-    try {
-      const response = await axios.get(url);
-      const data = response.data;
-
-      const platform = 'MT5';
-      const server = 'Live1';
-      const spreadProfile = 'Prime';
-
-      const spreadProfilePrices = data
-        .filter(item => item.topo.platform === platform && item.topo.server === server)
-        .flatMap(item => item.spreadProfilePrices.filter(price => price.spreadProfile === 'Prime'));
-
-      if (spreadProfilePrices.length > 0) {
-        const priceMessages = spreadProfilePrices.map(price => ` ▶ Bid: ${price.bid},\n ▶ Ask: ${price.ask}`).join('\n');
-
-        if (updateEnabled) {
-          if (updateMessage) {
-            if (deleteOldMessages) {
-              updateMessage.delete();
+    while (isBotActive) {
+      try {
+        const response = await axios.get(url);
+        const data = response.data;
+  
+        const platform = 'MT5';
+        const server = 'Live1';
+        const spreadProfile = 'Prime';
+  
+        const spreadProfilePrices = data
+          .filter(item => item.topo.platform === platform && item.topo.server === server)
+          .flatMap(item => item.spreadProfilePrices.filter(price => price.spreadProfile === 'Prime'));
+  
+        if (spreadProfilePrices.length > 0) {
+          const priceMessages = spreadProfilePrices.map(price => ` ▶ Bid: ${price.bid},\n ▶ Ask: ${price.ask}`).join('\n');
+  
+          if (updateEnabled) {
+            if (updateMessage) {
+              if (deleteOldMessages) {
+                updateMessage.delete();
+              } else {
+                updateMessage.edit(`# Spread Profile Prices for ${platform} on server: ${server}\n # Account: ${spreadProfile}\n\`\`\`${priceMessages}\`\`\``);
+              }
             } else {
-              updateMessage.edit(`# Spread Profile Prices for ${platform} on server: ${server}\n # Account: ${spreadProfile}\n\`\`\`${priceMessages}\`\`\``);
+              updateMessage = await client.channels.cache.get(channelId).send(`# Spread Profile Prices for ${platform} on server: ${server}\n # Account: ${spreadProfile}\n\`\`\`${priceMessages}\`\`\``);
             }
+          } else {
+            client.channels.cache.get(channelId).send(`# Spread Profile Prices for ${platform} on server: ${server}\n # Account: ${spreadProfile}\n\`\`\`${priceMessages}\`\`\``);
           }
-
-          updateMessage = await client.channels.cache.get(channelId).send(`# Spread Profile Prices for ${platform} on server: ${server}\n # Account: ${spreadProfile}\n\`\`\`${priceMessages}\`\`\``);
         } else {
-          client.channels.cache.get(channelId).send(`# Spread Profile Prices for ${platform} on server: ${server}\n # Account: ${spreadProfile}\n\`\`\`${priceMessages}\`\`\``);
+          client.channels.cache.get(channelId).send(`No data found for ${platform} on ${server} server.`);
         }
-      } else {
-        client.channels.cache.get(channelId).send(`No data found for ${platform} on ${server} server.`);
+      } catch (error) {
+        console.error('Error fetching Forex data:', error);
       }
-    } catch (error) {
-      console.error('Error fetching Forex data:', error);
+  
+      await wait(5000);
     }
-
-    await wait(10000);
-  }
-}
+  }  
 
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
