@@ -1,7 +1,7 @@
 
 <h3 align="center">forex-update-gold-discord</h3>
 
-<h3 align="center">update reali-time</h3>
+<h3 align="center">update real-time</h3>
 <h3 align="center">First</h3>
 
 #
