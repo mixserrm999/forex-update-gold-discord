@@ -1,0 +1,1 @@
+# forex-update-gold-discord
