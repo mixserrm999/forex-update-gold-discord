@@ -1,5 +1,5 @@
 
-<h1 align="center">forex-update-gold-discord</h1>
+<h3 align="center">forex-update-gold-discord</h3>
 <h3 align="center">First</h3>
 
 #
